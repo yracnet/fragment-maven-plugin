@@ -1,4 +1,4 @@
-package dev.yracnet.fragment.maven.plugin.data;
+package com.github.yracnet.fragment.maven.plugin.data;
 
 import org.apache.maven.model.Plugin;
 import org.codehaus.plexus.util.xml.Xpp3Dom;

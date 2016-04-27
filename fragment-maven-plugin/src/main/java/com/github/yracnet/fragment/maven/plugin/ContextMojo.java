@@ -1,6 +1,6 @@
-package dev.yracnet.fragment.maven.plugin;
+package com.github.yracnet.fragment.maven.plugin;
 
-import dev.yracnet.fragment.maven.plugin.data.DeclareFragment;
+import com.github.yracnet.fragment.maven.plugin.data.DeclareFragment;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

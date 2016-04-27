@@ -1,7 +1,7 @@
-package dev.yracnet.fragment.maven.plugin;
+package com.github.yracnet.fragment.maven.plugin;
 
-import dev.yracnet.fragment.maven.plugin.data.DeclareExecution;
-import dev.yracnet.fragment.maven.plugin.data.DeclareFragment;
+import com.github.yracnet.fragment.maven.plugin.data.DeclareExecution;
+import com.github.yracnet.fragment.maven.plugin.data.DeclareFragment;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
