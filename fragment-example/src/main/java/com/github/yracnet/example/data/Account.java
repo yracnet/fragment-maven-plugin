@@ -1,4 +1,4 @@
-package dev.yracnet.entel.data;
+package com.github.yracnet.example.data;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;

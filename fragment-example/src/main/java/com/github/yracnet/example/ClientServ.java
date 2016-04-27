@@ -1,5 +1,5 @@
-package dev.yracnet.entel;
-import dev.yracnet.entel.data.Client;
+package com.github.yracnet.example;
+import com.github.yracnet.example.data.Client;
 import java.util.List;
 
 public interface ClientServ {
