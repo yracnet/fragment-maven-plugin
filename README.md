@@ -15,7 +15,7 @@ Include the fragment-maven-plugin in your project and declare another fragment (
  <plugins>
   ...
   <plugin>
-    <groupId>dev.yracnet.maven</groupId>
+    <groupId>com.github.yracnet.maven</groupId>
     <artifactId>fragment-maven-plugin</artifactId>
     <version>0.1.1-SNAPSHOT</version>
     <executions>
