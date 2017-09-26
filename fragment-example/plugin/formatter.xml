@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://maven.apache.org/POM/4.0.0" 
+								xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+								xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 fragment-4.0.0.xsd" >
+	<groupId>net.revelc.code</groupId>
+	<artifactId>formatter-maven-plugin</artifactId>
+	<version>0.5.2</version>
+	<executions>
+		<execution>
+			<goals>
+				<goal>format</goal>
+			</goals>
+		</execution>
+	</executions>
+	<configuration>
+		<lineEnding>CRLF</lineEnding>
+		<encoding>UTF-8</encoding>
+		<!--configFile>${override.configFile}</configFile-->
+	</configuration>
+	<override>
+		<configFile>config/formatter.xml</configFile>
+	</override>
+</plugin>
