@@ -1,7 +1,7 @@
 package dev.yracnet.fragment.maven.plugin;
 
-import dev.yracnet.fragment.maven.plugin.data.PluginExecution;
-import dev.yracnet.fragment.maven.plugin.data.PluginFragment;
+import dev.yracnet.fragment.maven.plugin.data.DeclareExecution;
+import dev.yracnet.fragment.maven.plugin.data.DeclareFragment;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -17,13 +17,13 @@ public class ProcessMojo extends ContextMojo {
 	 * <b>XML Fragment of Plugin Maven</b>
 	 * <pre>
 	 *  &lt;configuration&gt;
-		*   &lt;fragments&gt;
-		*    &lt;fragment&gt;formatter.xml&lt;/fragment&gt;
+	 *   &lt;fragments&gt;
+	 *    &lt;fragment&gt;formatter.xml&lt;/fragment&gt;
 	 *   &lt;/fragments&gt;
-		*  &lt;/configuration&gt;
+	 *  &lt;/configuration&gt;
 	 * </pre>
-		* 
-		* <b>File: formatter.xml</b>
+	 *
+	 * <b>File: formatter.xml</b>
 	 * <pre>
 	 * &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 	 * &lt;plugin&gt;
@@ -51,6 +51,10 @@ public class ProcessMojo extends ContextMojo {
 		getLog().info("========================================================================");
 	}
 
+	public void goal() {
+		getLog().info("------------------------------------------------------------------------");
+	}
+
 	@Override
 	public void execute() throws MojoExecutionException {
 		space();
@@ -62,34 +66,43 @@ public class ProcessMojo extends ContextMojo {
 		space();
 	}
 
-	public void execute(String name) throws MojoExecutionException {
-		PluginFragment pluginFragment = getPluginFragment(name);
+	public void execute(final String name) throws MojoExecutionException {
+		DeclareFragment pluginFragment = getPluginFragment(name);
 		if (pluginFragment != null && pluginFragment.isSkip() == false) {
 			execute(pluginFragment);
 		}
 	}
 
-	public void execute(PluginFragment pluginFragment) throws MojoExecutionException {
+	public void execute(final DeclareFragment pluginFragment) throws MojoExecutionException {
 		Plugin plugin = pluginFragment.getPlugin();
-		PluginExecution executionArray[] = pluginFragment.getExecution();
-		for (PluginExecution execution : executionArray) {
+		DeclareExecution executionArray[] = pluginFragment.getExecution();
+		for (DeclareExecution execution : executionArray) {
 			execute(plugin, execution, pluginFragment.getConfiguration());
 		}
 	}
 
-	public void execute(Plugin plugin, PluginExecution execution, Xpp3Dom configuration) throws MojoExecutionException {
+	public void execute(final Plugin plugin, final DeclareExecution execution, final Xpp3Dom configuration) throws MojoExecutionException {
 		String[] goalArray = execution.getGoal();
 		MojoExecutor.ExecutionEnvironment env = getCurrentExecutionEnvironment();
 		for (String goalName : goalArray) {
+			goal();
 			getLog().info("PROCESS FRAGMENT " + plugin);
 			getLog().info("GOAL NAME: " + goalName);
 			getLog().debug("PROCESS FRAGMENT " + plugin + " - " + configuration);
-			MojoExecutor.executeMojo(
-											plugin,
-											goalName,
-											configuration,
-											env
-			);
+			//Xpp3Dom temporal = new Xpp3Dom(configuration);
+			Xpp3Dom config = execution.getConfiguration(configuration);
+			execute(plugin, goalName, config, env);
 		}
+
 	}
+
+	public void execute(final Plugin plugin, final String goalName, final Xpp3Dom configuration, final MojoExecutor.ExecutionEnvironment env) throws MojoExecutionException {
+		MojoExecutor.executeMojo(
+										plugin,
+										goalName,
+										configuration,
+										env
+		);
+	}
+
 }

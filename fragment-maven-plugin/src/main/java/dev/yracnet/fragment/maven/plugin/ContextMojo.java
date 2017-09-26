@@ -1,6 +1,6 @@
 package dev.yracnet.fragment.maven.plugin;
 
-import dev.yracnet.fragment.maven.plugin.data.PluginFragment;
+import dev.yracnet.fragment.maven.plugin.data.DeclareFragment;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,13 +29,13 @@ public abstract class ContextMojo extends AbstractMojo {
 	@Component
 	private BuildPluginManager pluginManager;
 
-	public PluginFragment getPluginFragment(String configFile) throws MojoExecutionException {
+	public DeclareFragment getPluginFragment(String configFile) throws MojoExecutionException {
 		File file = new File(configFile);
 		if (file.exists()) {
 			try {
 				InputStream in = new FileInputStream(file);
 				Xpp3Dom fragment = Xpp3DomBuilder.build(in, "UTF-8");
-				return new PluginFragment(fragment);
+				return new DeclareFragment(fragment);
 			} catch (IOException | XmlPullParserException e) {
 				throw new MojoExecutionException("Can't not read file: " + configFile, e);
 			}

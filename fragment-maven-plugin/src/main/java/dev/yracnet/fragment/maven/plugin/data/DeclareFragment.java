@@ -3,28 +3,28 @@ package dev.yracnet.fragment.maven.plugin.data;
 import org.apache.maven.model.Plugin;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 
-public class PluginFragment {
+public class DeclareFragment {
 
 	private final Xpp3Dom configuration;
-	private final PluginExecution execution[];
+	private final DeclareExecution execution[];
 	private final String groupId;
 	private final String artifactId;
 	private final String version;
 	private final boolean skip;
 
-	public PluginFragment(Xpp3Dom config) {
+	public DeclareFragment(Xpp3Dom config) {
 		groupId = config.getChild("groupId").getValue();
 		artifactId = config.getChild("artifactId").getValue();
 		version = config.getChild("version").getValue();
 		Xpp3Dom executions = config.getChild("executions");
 		if (executions != null) {
 			Xpp3Dom item[] = executions.getChildren();
-			execution = new PluginExecution[item.length];
+			execution = new DeclareExecution[item.length];
 			for (int i = 0; i < item.length; i++) {
-				execution[i] = new PluginExecution(item[i]);
+				execution[i] = new DeclareExecution(item[i]);
 			}
 		} else {
-			execution = new PluginExecution[0];
+			execution = new DeclareExecution[0];
 		}
 		configuration = config.getChild("configuration");
 		skip = configuration == null ? true : configuration.getChild("skip") == null ? false : "true".equalsIgnoreCase(configuration.getChild("skip").getValue());
@@ -50,7 +50,7 @@ public class PluginFragment {
 		return configuration;
 	}
 
-	public PluginExecution[] getExecution() {
+	public DeclareExecution[] getExecution() {
 		return execution;
 	}
 

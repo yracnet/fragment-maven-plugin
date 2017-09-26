@@ -1,22 +1,40 @@
-<plugin>
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://maven.apache.org/POM/4.0.0" 
+								xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+								xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 fragment-4.0.0.xsd" >
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-pmd-plugin</artifactId>
-	<version>3.6</version>
+	<version>3.7</version>
 	<executions>
 		<execution>
 			<goals>
+				<goal>pmd</goal>
+			</goals>
+			<configuration>
+				<targetJdk>1.8</targetJdk>		
+			</configuration>
+		</execution>
+		<execution>
+			<goals>
+				<goal>cpd</goal>
+			</goals>
+			<configuration>
+				<minimumTokens>150</minimumTokens>
+			</configuration>
+		</execution>
+		<execution>
+			<goals>
 				<goal>check</goal>
+			</goals>
+			<configuration>
+				<linkXRef>false</linkXRef>
+				<sourceEncoding>UTF-8</sourceEncoding>
+			</configuration>
+		</execution>
+		<execution>
+			<goals>
 				<goal>cpd-check</goal>
 			</goals>
 		</execution>
 	</executions>
-	<configuration>
-		<sourceEncoding>UTF-8</sourceEncoding>
-		<minimumTokens>150</minimumTokens>
-		<targetJdk>1.7</targetJdk>
-		<linkXRef>false</linkXRef>
-		<excludeRoots>
-			<excludeRoot>target/generated-sources</excludeRoot>
-		</excludeRoots>
-	</configuration>
 </plugin>
