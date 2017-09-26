@@ -14,33 +14,35 @@ import org.twdata.maven.mojoexecutor.MojoExecutor;
 public class ProcessMojo extends ContextMojo {
 
 	/**
-	 * XML Fragment of Plugin Maven
-	 * <pre>{@code
-	 *  <fragments>
-	 *   <fragment>formatter.xml</fragment>
-	 *  </fragments>
-	 * }</pre>
-	 *
-	 * File: formatter.xml
-	 * <pre>{@code
-	 * <?xml version="1.0" encoding="UTF-8"?>
-	 * <plugin>
-	 *  <groupId>net.revelc.code</groupId>
-	 *  <artifactId>formatter-maven-plugin</artifactId>
-	 *  <version>0.5.2</version>
-	 *  <executions>
-	 *   <execution>
-	 *    <goals>
-	 *     <goal>format</goal>
-	 *    </goals>
-	 *   </execution>
-	 *  </executions>
-	 * <configuration>
-	 *  <lineEnding>CRLF</lineEnding>
-	 *  <encoding>UTF-8</encoding>
-	 * </configuration>
-	 * </plugin>
-	 * }</pre>
+	 * <b>XML Fragment of Plugin Maven</b>
+	 * <pre>
+	 *  &lt;configuration&gt;
+		*   &lt;fragments&gt;
+		*    &lt;fragment&gt;formatter.xml&lt;/fragment&gt;
+	 *   &lt;/fragments&gt;
+		*  &lt;/configuration&gt;
+	 * </pre>
+		* 
+		* <b>File: formatter.xml</b>
+	 * <pre>
+	 * &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+	 * &lt;plugin&gt;
+	 *  &lt;groupId&gt;net.revelc.code&lt;/groupId&gt;
+	 *  &lt;artifactId&gt;formatter-maven-plugin&lt;/artifactId&gt;
+	 *  &lt;version&gt;0.5.2&lt;/version&gt;
+	 *  &lt;executions&gt;
+	 *   &lt;execution&gt;
+	 *    &lt;goals&gt;
+	 *     &lt;goal&gt;format&lt;/goal&gt;
+	 *    &lt;/goals&gt;
+	 *   &lt;/execution&gt;
+	 *  &lt;/executions&gt;
+	 *  &lt;configuration&gt;
+	 *   &lt;lineEnding&gt;CRLF&lt;/lineEnding&gt;
+	 *   &lt;encoding&gt;UTF-8&lt;/encoding&gt;
+	 *  &lt;/configuration&gt;
+	 * &lt;/plugin&gt;
+	 * </pre>
 	 */
 	@Parameter(alias = "fragments")
 	private String[] fragment;
