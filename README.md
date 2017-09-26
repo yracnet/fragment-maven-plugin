@@ -1,42 +1,43 @@
 ## Fragment Maven Plugin
 
-You can sparate the pom.xml in other xml for eaxh plugin taht use in your project.
+You can split  the pom.xml in other xml (plugin-fragment)  each plugin that used in your project.
 
-The fragment-maven-plugin execute of configuration declared in other xml and only apply plugin configuration like at project>build>plugins>plugin
+The fragment-maven-plugin execute of configuration declared.
+The xml is like to "project>build>plugins>plugin"
 
 ### Configuration
 
-Include de fragment-maven-plugin in your project and declare all xml fragment that you execute
+Include the fragment-maven-plugin in your project and declare another fragment (xml file) for the plugin you want to run
 ### pom.xml
 ```
-	<build>
-    ...
-		<plugins>
+<build>
+ ...
+ <plugins>
+  ...
+  <plugin>
+    <groupId>dev.yracnet.maven</groupId>
+    <artifactId>fragment-maven-plugin</artifactId>
+    <version>0.1.1-SNAPSHOT</version>
+    <executions>
+     <execution>
+      <phase>process-resources</phase>
+      <goals>
+       <goal>process</goal>       
+      </goals>
+     </execution>
+    </executions>
+    <configuration>
+     <skip>false</skip>
+     <fragments>
+      <fragment>${basedir}/plugin/formatter.xml</fragment>
+      .... More xml
+     </fragments>
+    </configuration>
+   </plugin>
       ...
-			<plugin>
-				<groupId>dev.yracnet.maven</groupId>
-				<artifactId>fragment-maven-plugin</artifactId>
-				<version>0.1.1-SNAPSHOT</version>
-				<executions>
-					<execution>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>process</goal>							
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<skip>false</skip>
-					<fragments>
-						<fragment>${basedir}/plugin/formatter.xml</fragment>
-						.... More xml
-					</fragments>
-				</configuration>
-			</plugin>
-      ...
-		</plugins>
+  </plugins>
     ...
-	</build>
+ </build>
 ```
 
 ### plugin/formatter.xml
@@ -44,24 +45,24 @@ Include de fragment-maven-plugin in your project and declare all xml fragment th
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
-	<groupId>net.revelc.code</groupId>
-	<artifactId>formatter-maven-plugin</artifactId>
-	<version>0.5.2</version>
-	<executions>
-		<execution>
-			<goals>
-				<goal>format</goal>
-			</goals>
-		</execution>
-	</executions>
-	<configuration>
-		<lineEnding>CRLF</lineEnding>
-		<encoding>UTF-8</encoding>
-	</configuration>
+ <groupId>net.revelc.code</groupId>
+ <artifactId>formatter-maven-plugin</artifactId>
+ <version>0.5.2</version>
+ <executions>
+  <execution>
+   <goals>
+    <goal>format</goal>
+   </goals>
+  </execution>
+ </executions>
+ <configuration>
+  <lineEnding>CRLF</lineEnding>
+  <encoding>UTF-8</encoding>
+ </configuration>
 </plugin>
 ```
 
 
 ### Contact
 
-If yout have any cuestion, send a email to yracnet@gmail.com.
+If you have any question, send a email to yracnet@gmail.com.
