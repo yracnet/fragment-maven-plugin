@@ -10,7 +10,6 @@ public class DeclareFragment {
 	private final String groupId;
 	private final String artifactId;
 	private final String version;
-	private final boolean skip;
 
 	public DeclareFragment(Xpp3Dom config) {
 		groupId = config.getChild("groupId").getValue();
@@ -26,8 +25,8 @@ public class DeclareFragment {
 		} else {
 			execution = new DeclareExecution[0];
 		}
-		configuration = config.getChild("configuration");
-		skip = configuration == null ? true : configuration.getChild("skip") == null ? false : "true".equalsIgnoreCase(configuration.getChild("skip").getValue());
+		Xpp3Dom configurationDom = config.getChild("configuration");
+		configuration = configurationDom == null ? new Xpp3Dom("configuration") : configurationDom;
 	}
 
 	public String getGroupId() {
@@ -40,10 +39,6 @@ public class DeclareFragment {
 
 	public String getVersion() {
 		return version;
-	}
-
-	public boolean isSkip() {
-		return skip;
 	}
 
 	public Xpp3Dom getConfiguration() {
@@ -71,5 +66,31 @@ public class DeclareFragment {
 										+ ", configuration=" + configuration
 										+ ", execution=" + execution
 										+ "}";
+	}
+
+	public String getPluginString() {
+		return groupId + " - " + artifactId + " @ " + version;
+	}
+
+	public String getConfigurationString() {
+		StringBuilder str = new StringBuilder();
+		for (Xpp3Dom item : configuration.getChildren()) {
+			str.append(item.getName());
+			str.append("=");
+			str.append(item.getValue());
+			str.append(",");
+		}
+		return str.toString();
+	}
+
+	public String getExecutionString() {
+		StringBuilder str = new StringBuilder();
+		for (DeclareExecution item : execution) {
+			str.append(item.getGoalString());
+			str.append(" for ");
+			str.append(item.getConfigurationString());
+			str.append(",");
+		}
+		return str.toString();
 	}
 }

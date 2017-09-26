@@ -68,7 +68,10 @@ public class ProcessMojo extends ContextMojo {
 
 	public void execute(final String name) throws MojoExecutionException {
 		DeclareFragment pluginFragment = getPluginFragment(name);
-		if (pluginFragment != null && pluginFragment.isSkip() == false) {
+		if (pluginFragment != null) {
+			getLog().info("Plugin: " + pluginFragment.getPluginString());
+			getLog().info("Configuration: " + pluginFragment.getConfigurationString());
+			getLog().info("Execution: " + pluginFragment.getExecutionString());
 			execute(pluginFragment);
 		}
 	}
@@ -88,9 +91,8 @@ public class ProcessMojo extends ContextMojo {
 			goal();
 			getLog().info("PROCESS FRAGMENT " + plugin);
 			getLog().info("GOAL NAME: " + goalName);
-			getLog().debug("PROCESS FRAGMENT " + plugin + " - " + configuration);
-			//Xpp3Dom temporal = new Xpp3Dom(configuration);
 			Xpp3Dom config = execution.getConfiguration(configuration);
+			getLog().info("CONFIG: " + config);
 			execute(plugin, goalName, config, env);
 		}
 

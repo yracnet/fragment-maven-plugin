@@ -27,8 +27,7 @@
 				<goal>check</goal>
 			</goals>
 			<configuration>
-				<linkXRef>false</linkXRef>
-				<sourceEncoding>UTF-8</sourceEncoding>
+				<!--sourceEncoding>UTF-8</sourceEncoding-->
 			</configuration>
 		</execution>
 		<execution>
