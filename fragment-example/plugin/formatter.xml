@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://maven.apache.org/POM/4.0.0" 
 								xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-								xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 fragment-4.0.0.xsd" >
+								xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://raw.githubusercontent.com/yracnet/fragment-maven-plugin/master/fragment-maven-plugin/src/main/resources/META-INF/fragment-4.0.0.xsd" >
 	<groupId>net.revelc.code</groupId>
 	<artifactId>formatter-maven-plugin</artifactId>
 	<version>0.5.2</version>
@@ -15,7 +15,6 @@
 	<configuration>
 		<lineEnding>CRLF</lineEnding>
 		<encoding>UTF-8</encoding>
-		<!--configFile>${override.configFile}</configFile-->
 	</configuration>
 	<override>
 		<configFile>config/formatter.xml</configFile>
