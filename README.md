@@ -1,37 +1,67 @@
-## Welcome to GitHub Pages
+## Fragment Maven Plugin
 
-You can use the [editor on GitHub](https://github.com/yracnet/fragment-maven-plugin/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+You can sparate the pom.xml in other xml for eaxh plugin taht use in your project.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The fragment-maven-plugin execute of configuration declared in other xml and only apply plugin configuration like at project>build>plugins>plugin
 
-### Markdown
+### Configuration
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+Include de fragment-maven-plugin in your project and declare all xml fragment that you execute
+### pom.xml
+```
+	<build>
+    ...
+		<plugins>
+      ...
+			<plugin>
+				<groupId>dev.yracnet.maven</groupId>
+				<artifactId>fragment-maven-plugin</artifactId>
+				<version>0.1.1-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>process</goal>							
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>false</skip>
+					<fragments>
+						<fragment>${basedir}/plugin/formatter.xml</fragment>
+						.... More xml
+					</fragments>
+				</configuration>
+			</plugin>
+      ...
+		</plugins>
+    ...
+	</build>
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### plugin/formatter.xml
 
-### Jekyll Themes
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+	<groupId>net.revelc.code</groupId>
+	<artifactId>formatter-maven-plugin</artifactId>
+	<version>0.5.2</version>
+	<executions>
+		<execution>
+			<goals>
+				<goal>format</goal>
+			</goals>
+		</execution>
+	</executions>
+	<configuration>
+		<lineEnding>CRLF</lineEnding>
+		<encoding>UTF-8</encoding>
+	</configuration>
+</plugin>
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yracnet/fragment-maven-plugin/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
+### Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+If yout have any cuestion, send a email to yracnet@gmail.com.
