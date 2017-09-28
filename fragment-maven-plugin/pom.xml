@@ -6,7 +6,7 @@
 	<version>0.1.1</version>
 	<packaging>maven-plugin</packaging>
 	<name>fragment-maven-plugin</name>
-	<description>Plugin for control the basic concept of assure quality code</description>
+	<description>Plugin for split pom.xml to other xml for plugin executed by mojo-executer</description>
 	<url>https://github.com/yracnet/fragment-maven-plugin</url>
 	<licenses>
 		<license>
